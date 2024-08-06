@@ -1,0 +1,11 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Entorno virtual
+venv/
+.env

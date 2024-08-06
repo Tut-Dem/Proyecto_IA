@@ -1,0 +1,89 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container">
+  <h1 class="display-5 fw-bold" style="color: white; padding-top: 30px">
+    Ingrese URL usuario
+  </h1>
+  <form id="scraping-form">
+    <div class="input-group flex-nowrap move-down" style="padding-top: 10px">
+      <span class="input-group-text" id="addon-wrapping">></span>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        name="username"
+        placeholder="example: reddit.com/r/Depresion/"
+        aria-label="Username"
+        aria-describedby="addon-wrapping"
+      />
+      <button class="btn btn-primary btn-lg" type="submit">Iniciar</button>
+    </div>
+  </form>
+  <div class="row align-items-md-stretch">
+    <div class="col-md-12">
+      <div class="h-100 p-5 text-bg-dark rounded-3">
+        <h2>Instrucciones</h2>
+        <p>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-toggle="popover"
+            title="Instrucciones"
+            data-bs-content="Para hacer un análisis solo debes pegar la URL correspondiente al perfil del foro a obtener los comentarios."
+          >
+            Ver Instrucciones
+          </button>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-12" style="padding-top: 30px; text-align: center">
+      <img
+        src="{{ url_for('static', filename='galeria/reddit.png') }}"
+        class="image"
+        alt="Descripción de la imagen"
+        style="display: block; margin: 0 auto"
+      />
+    </div>
+  </div>
+
+  <footer class="pt-3 mt-4 border-top" style="color: white">
+    <div class="container text-center">
+      <p>
+        &copy; 2024 Interactive ACEND Corporation. Todos los derechos
+        reservados.
+      </p>
+    </div>
+  </footer>
+</div>
+
+<script>
+  document
+    .getElementById("scraping-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+      document.body.innerHTML = ""; // Limpiar la página
+      document.body.innerHTML = `
+      <div class="container">
+          <h1 class="display-5 fw-bold" style="color: white; padding-top: 200px;">Cargando...</h1>
+          <div class="spinner-border text-primary" role="status">
+              <span class="sr-only">Cargando...</span>
+          </div>
+      </div>
+    `;
+
+      const formData = new FormData(this);
+      fetch("/process_username", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            window.location.href =
+              "/result?data=" + encodeURIComponent(JSON.stringify(data.result));
+          } else {
+            alert("Error: " + data.error);
+          }
+        });
+    });
+</script>
+{% endblock %}

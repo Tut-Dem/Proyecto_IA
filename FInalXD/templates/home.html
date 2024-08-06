@@ -1,0 +1,63 @@
+{% extends "layout.html" %} {% block content %}
+<main>
+  <div class="container py-4">
+    <header class="pb-3 mb-4 border-bottom">
+      <a
+        href="/"
+        class="d-flex align-items-center text-body-emphasis text-decoration-none"
+      >
+        <span class="fs-4" style="color: white">INICIO</span>
+      </a>
+    </header>
+
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+      <div class="container-fluid py-5">
+        <div class="row">
+          <div class="col-md-8">
+            <h1 class="display-5 fw-bold">Analizador de Comentarios</h1>
+            <p class="fs-4">
+              El siguiente programa se encarga de analizar los comentarios de un
+              Usuario determinado de la plataforma reddit y clasificarlos entre
+              comentarios depresivos y no depresivos
+            </p>
+            <br /><br />
+            <div class="d-flex justify-content-center mt-6">
+              <button
+                class="btn btn-primary btn-lg"
+                type="button"
+                onclick="location.href='/solicitudes'"
+              >
+                Iniciar
+              </button>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img
+              src="{{ url_for('static', filename='galeria/logo.png') }}"
+              class="img-fluid"
+              alt="Descripción de la imagen"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="pt-3 mt-4 border-top" style="color: white">
+      <div class="container text-center">
+        <p>
+          &copy; 2024 Interactive ACEND Corporation. Todos los derechos
+          reservados.
+        </p>
+      </div>
+    </footer>
+  </div>
+</main>
+
+<script>
+  var popoverTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="popover"]')
+  );
+  var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    return new bootstrap.Popover(popoverTriggerEl);
+  });
+</script>
+{% endblock %}
