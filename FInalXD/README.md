@@ -16,8 +16,15 @@ Asegúrate de tener instalados los siguientes componentes:
    ```bash
    git clone https://github.com/tu_usuario/IAProject.git
    cd IAProject
-2. **Crear ambiente**:
-    python3 -m venv venv
-    source venv/bin/activate
-3. **Instalar dependecias**:
+
+   # Ingresar a la dirección el proyecto
+   cd /d/CLONACION/IAProject/FInalXD
+   
+   # Activar el entorno virtual
+   source 'venv copy'/Scripts/activate
+   
+   3. **Instalar dependecias**:
     pip install -r requirements.txt
+
+   # Ejecutar la aplicación Flask
+   python app.py
